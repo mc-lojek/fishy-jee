@@ -3,6 +3,7 @@ package pl.mclojek.fishy.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class User {
+public class User implements Serializable {
 
     private long id;
     private String username;
@@ -24,5 +25,6 @@ public class User {
     private int experience;
 
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Fish> fishList;
 }

@@ -3,6 +3,7 @@ package pl.mclojek.fishy.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class Fish {
+public class Fish implements Serializable {
     private long id;
     private String species;
     private LocalDateTime catchDate;
@@ -20,5 +21,4 @@ public class Fish {
     private float weight;
     private Lake lake;
     private User hunter;
-
 }

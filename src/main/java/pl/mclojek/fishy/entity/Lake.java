@@ -3,6 +3,7 @@ package pl.mclojek.fishy.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class Lake {
+public class Lake implements Serializable {
     private long id;
     private String name;
     private double latitude;
