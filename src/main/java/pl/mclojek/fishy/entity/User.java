@@ -27,4 +27,8 @@ public class User implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Fish> fishList;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private byte[] avatar;
 }

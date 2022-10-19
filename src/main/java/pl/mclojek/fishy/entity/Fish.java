@@ -2,6 +2,7 @@ package pl.mclojek.fishy.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import pl.mclojek.fishy.enums.FishSpecies;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Fish implements Serializable {
     private long id;
-    private String species;
+    private FishSpecies species;
     private LocalDateTime catchDate;
     private int length;
     private float weight;

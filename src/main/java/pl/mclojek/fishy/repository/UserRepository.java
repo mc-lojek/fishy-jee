@@ -1,6 +1,5 @@
 package pl.mclojek.fishy.repository;
 
-import lombok.AllArgsConstructor;
 import pl.mclojek.fishy.common.datastore.DataStore;
 import pl.mclojek.fishy.entity.User;
 
@@ -12,7 +11,7 @@ import java.util.Optional;
 @Dependent
 public class UserRepository implements Repository<User, Long> {
 
-    private DataStore store;
+    private final DataStore store;
 
     @Inject
     public UserRepository(DataStore store) {
@@ -41,6 +40,6 @@ public class UserRepository implements Repository<User, Long> {
 
     @Override
     public void update(User entity) {
-
+        store.updateUser(entity);
     }
 }

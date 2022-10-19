@@ -22,7 +22,7 @@ import java.util.Optional;
 @WebServlet(urlPatterns = UserServlet.Paths.USERS + "/*")
 public class UserServlet extends HttpServlet {
 
-    private UserService service;
+    private final UserService service;
 
     public static class Paths {
         public static final String USERS = "/api/users";

@@ -35,4 +35,16 @@ public class DataStore {
         users.add(CloningUtility.clone(user));
     }
 
+    public synchronized void updateUser(User user) throws IllegalArgumentException {
+        findUser(user.getId()).ifPresentOrElse(
+                original -> {
+                    users.remove(original);
+                    users.add(CloningUtility.clone(user));
+                },
+                () -> {
+                    throw new IllegalArgumentException(
+                            String.format("No user with id \"%d\" found!", user.getId()));
+                });
+    }
+
 }

@@ -1,6 +1,6 @@
 package pl.mclojek.fishy.enums;
 
-enum FishSpecies {
+public enum FishSpecies {
     COMMON_CARP,
     MIRROR_CARP,
     GRASS_CARP,
