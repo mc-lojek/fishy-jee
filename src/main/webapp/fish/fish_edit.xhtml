@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{fishEdit.id}" required="true"/>
+        <f:viewAction action="#{fishEdit.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="default" name="css/styles.css"/>
+        <article class="text--justified">
+            <header><h2>Edytuj rybę</h2></header>
+            <h:form class="character__form">
+                <h:outputLabel for="species" value="Gatunek:"/>
+                <h:inputText class="ui-control ui-input" id="species" value="#{fishEdit.fish.species}"/>
+                <h:outputLabel for="catch_date" value="Data połowu:"/>
+                <h:inputText class="ui-control ui-input" id="catch_date" value="#{fishEdit.fish.catchDate}"/>
+                <h:outputLabel for="length" value="Długość:"/>
+                <h:inputTextarea class="ui-control" id="length" value="#{fishEdit.fish.length}"/>
+                <h:outputLabel for="weight" value="Waga"/>
+                <h:inputTextarea class="ui-control" id="weight" value="#{fishEdit.fish.weight}"/>
+                <h:commandButton class="ui-control ui-button" value="Zapisz"
+                                 action="#{fishEdit.saveAction()}"/>
+            </h:form>
+        </article>
+    </ui:define>
+</ui:composition>

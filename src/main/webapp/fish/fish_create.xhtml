@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{fishCreate.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="default" name="css/styles.css"/>
+        <article class="text--justified">
+            <header><h2>Dodaj nowa rybe</h2></header>
+            <h:form class="character__form">
+                <h:outputLabel for="species" value="Gatunek:"/>
+                <h:selectOneRadio id="species" value="#{fishCreate.fish.species}"
+                                  layout="pageDirection">
+                    <f:selectItem itemValue="Karp pełnołuski" itemLabel="Karp pełnołuski"/>
+                    <f:selectItem itemValue="Karp królewski" itemLabel="Karp królewski"/>
+                    <f:selectItem itemValue="Amur" itemLabel="Amur"/>
+                    <f:selectItem itemValue="Sum" itemLabel="Sum"/>
+                    <f:selectItem itemValue="Jesiotr" itemLabel="Jesiotr"/>
+                    <f:selectItem itemValue="Inny" itemLabel="Inny"/>
+                </h:selectOneRadio>
+                <h:outputLabel for="catch_date" value="Data połowu:"/>
+                <h:inputText class="ui-control ui-input" id="catch_date" value="#{fishCreate.fish.catchDate}"/>
+                <h:outputLabel for="length" value="Długość:"/>
+                <h:inputTextarea class="ui-control" id="length" value="#{fishCreate.fish.length}"/>
+                <h:outputLabel for="weight" value="Waga"/>
+                <h:inputTextarea class="ui-control" id="weight" value="#{fishCreate.fish.weight}"/>
+                <h:outputLabel for="lake" value="Jezioro"/>
+                <h:selectOneRadio id="lake" value="#{fishCreate.fish.lake}"
+                                  layout="pageDirection">
+                    <f:selectItems var="lake" value="#{fishCreate.lakes}" itemValue="#{lake}"
+                                   itemLabel="#{lake.name}" itemLabelEscaped="false"/>
+                </h:selectOneRadio>
+                <h:commandButton class="ui-control ui-button" value="Zapisz"
+                                 action="#{fishCreate.saveAction()}"/>
+            </h:form>
+        </article>
+    </ui:define>
+</ui:composition>

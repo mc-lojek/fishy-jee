@@ -2,7 +2,12 @@ package pl.mclojek.fishy.configuration;
 
 import lombok.SneakyThrows;
 import pl.mclojek.fishy.common.util.Sha256Utility;
+import pl.mclojek.fishy.entity.Fish;
+import pl.mclojek.fishy.entity.Lake;
 import pl.mclojek.fishy.entity.User;
+import pl.mclojek.fishy.enums.FishSpecies;
+import pl.mclojek.fishy.service.FishService;
+import pl.mclojek.fishy.service.LakeService;
 import pl.mclojek.fishy.service.UserService;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,10 +22,14 @@ import java.time.ZoneId;
 public class Initializer {
 
     private final UserService userService;
+    private final LakeService lakeService;
+    private final FishService fishService;
 
     @Inject
-    public Initializer(UserService userService) {
+    public Initializer(UserService userService, LakeService lakeService, FishService fishService) {
         this.userService = userService;
+        this.lakeService = lakeService;
+        this.fishService = fishService;
     }
 
     public void contextInitialized(@Observes @Initialized(ApplicationScoped.class) Object init) {
@@ -73,6 +82,48 @@ public class Initializer {
         userService.create(u2);
         userService.create(u3);
         userService.create(admin);
+
+        Lake lake1 = Lake.builder()
+                .id(1)
+                .name("Jezioro Miłoszewskie")
+                .area(26.4f)
+                .isPublic(false)
+                .latitude(54.445604)
+                .longitude(18.042325)
+                .build();
+
+        Lake lake2 = Lake.builder()
+                .id(2)
+                .name("Jezioro Jeleń")
+                .area(106.33f)
+                .isPublic(true)
+                .latitude(54.200112)
+                .longitude(17.528322)
+                .build();
+
+        lakeService.create(lake1);
+        lakeService.create(lake2);
+
+        Fish f1 = Fish.builder()
+                .id(1)
+                .species(FishSpecies.COMMON_CARP)
+                .catchDate(LocalDateTime.now())
+                .length(123)
+                .weight(12.3f)
+                .lake(lake1)
+                .build();
+
+        Fish f2 = Fish.builder()
+                .id(2)
+                .species(FishSpecies.CATFISH)
+                .catchDate(LocalDateTime.now())
+                .length(1234)
+                .weight(1.666f)
+                .lake(lake1)
+                .build();
+
+        fishService.create(f1);
+        fishService.create(f2);
 
     }
 

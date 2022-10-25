@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="Fishy app"/>
+        <meta name="keywords" content="fishing, fish, lake"/>
+        <meta name="author" content="Maciej Łojek"/>
+        <title>Fishy</title>
+
+        <h:outputStylesheet library="default" name="css/styles.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <header class="header">
+                <h1>Fishy</h1>
+                <h:graphicImage library="default" name="img/logo.png"/>
+            </header>
+
+            <nav class="navigation-bar">
+                <ul>
+                    <li><h:link outcome="/index.xhtml">Strona główna</h:link></li>
+                    <li><h:link outcome="/lake/lake_list.xhtml">Jeziora</h:link></li>
+                </ul>
+            </nav>
+
+            <section class="main-section">
+                <ui:insert name="content"/>
+            </section>
+
+            <footer class="footer">
+                <p>Copyright &#169; 2022, Maciej Łojek</p>
+                <p>Based on Michał (psysiu) Wójcik's Simple RPG project</p>
+                <a href="https://git.pg.edu.pl/jakarta-ee/simple-rpg">GITLAB</a>
+            </footer>
+        </div>
+    </h:body>
+</f:view>
+</html>

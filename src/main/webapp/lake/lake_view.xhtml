@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/main.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{lakeView.id}" required="true"/>
+        <f:viewAction action="#{lakeView.init()}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="default" name="css/styles.css"/><!-- Automatically relocated to head. -->
+        <article class="text--justified">
+            <header><h2><h:outputText value="#{lakeView.lake.name}"/></h2></header>
+            <div class="character__grid">
+                <div class="character__level_profession">
+                    Współrzędne <h:outputText value="#{lakeView.lake.coords}"/>
+                </div>
+                <div class="character__experience">
+                    Powierzchnia <h:outputText value="#{lakeView.lake.area}"/> ha
+                </div>
+                <div class="character__health">Typ <h:outputText value="#{lakeView.lake.isPublic}"/></div>
+            </div>
+            <header><h2>Ryby z tego jeziora</h2></header>
+            <h:dataTable value="#{lakeView.lake.fishList}" var="fish" styleClass="data-table">
+                <h:column>
+                    <f:facet name="header">Gatunek</f:facet>
+                    <h:outputText value="#{fish.species}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Podgląd</f:facet>
+                    <h:link outcome="/fish/fish_view.xhtml" value="pokaż">
+                        <f:param name="id" value="#{fish.id}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Edycja</f:facet>
+                    <h:link outcome="/fish/fish_edit.xhtml" value="edytuj">
+                        <f:param name="id" value="#{fish.id}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Usunięcie</f:facet>
+                    <h:form>
+                        <h:commandButton styleClass="ui-button ui-control" value="usuń"
+                                         action="#{lakeView.deleteAction(fish, lakeView.id)}"/>
+                    </h:form>
+                </h:column>
+                <f:facet name="footer">
+                    <h:button styleClass="ui-button ui-control" outcome="/fish/fish_create.xhtml"
+                              value="Dodaj nową rybę"/>
+                </f:facet>
+            </h:dataTable>
+        </article>
+    </ui:define>
+
+</ui:composition>

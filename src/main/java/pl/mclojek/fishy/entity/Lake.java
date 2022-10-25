@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,5 +23,6 @@ public class Lake implements Serializable {
     private boolean isPublic;
 
     @ToString.Exclude
-    private List<Fish> fishList;
+    @Builder.Default
+    private List<Fish> fishList = new ArrayList<Fish>();
 }
