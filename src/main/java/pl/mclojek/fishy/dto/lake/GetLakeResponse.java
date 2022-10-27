@@ -25,6 +25,8 @@ public class GetLakeResponse {
 
     private boolean isPublic;
 
+//    private GetFishResponse fishes;
+
 
     public static Function<pl.mclojek.fishy.entity.Lake, GetLakeResponse> entityToDtoMapper() {
         return lake -> {
