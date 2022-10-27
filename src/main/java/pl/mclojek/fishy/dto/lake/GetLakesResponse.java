@@ -1,7 +1,6 @@
-package pl.mclojek.fishy.dto;
+package pl.mclojek.fishy.dto.lake;
 
 import lombok.*;
-import pl.mclojek.fishy.entity.Lake;
 
 import java.util.Collection;
 import java.util.List;

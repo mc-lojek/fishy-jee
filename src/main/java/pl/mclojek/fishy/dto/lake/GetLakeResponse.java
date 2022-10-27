@@ -1,9 +1,7 @@
-package pl.mclojek.fishy.dto;
+package pl.mclojek.fishy.dto.lake;
 
 import lombok.*;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 
 @Getter

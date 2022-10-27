@@ -2,8 +2,8 @@ package pl.mclojek.fishy.servlet;
 
 import pl.mclojek.fishy.common.MimeTypes;
 import pl.mclojek.fishy.common.util.ServletUtility;
-import pl.mclojek.fishy.dto.GetUserResponse;
-import pl.mclojek.fishy.dto.GetUsersResponse;
+import pl.mclojek.fishy.dto.user.GetUserResponse;
+import pl.mclojek.fishy.dto.user.GetUsersResponse;
 import pl.mclojek.fishy.entity.User;
 import pl.mclojek.fishy.service.UserService;
 

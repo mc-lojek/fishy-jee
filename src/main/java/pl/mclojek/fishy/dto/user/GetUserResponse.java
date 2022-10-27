@@ -1,12 +1,9 @@
-package pl.mclojek.fishy.dto;
+package pl.mclojek.fishy.dto.user;
 
 import lombok.*;
 import pl.mclojek.fishy.entity.User;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 
 @Getter

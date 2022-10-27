@@ -1,4 +1,4 @@
-package pl.mclojek.fishy.dto;
+package pl.mclojek.fishy.dto.user;
 
 import lombok.*;
 
