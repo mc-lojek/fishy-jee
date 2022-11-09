@@ -1,5 +1,6 @@
 package pl.mclojek.fishy.controller;
 
+import pl.mclojek.fishy.dto.fish.GetFishResponse;
 import pl.mclojek.fishy.dto.lake.CreateLakeRequest;
 import pl.mclojek.fishy.dto.lake.GetLakeResponse;
 import pl.mclojek.fishy.dto.lake.GetLakesResponse;
@@ -43,7 +44,7 @@ public class LakeController {
         Optional<Lake> entity = service.find(id);
 
         if (entity.isPresent()) {
-            return Response.ok(GetLakeResponse.entityToDtoMapper().apply(entity.get()))
+            return Response.ok(GetLakeResponse.entityToDtoMapper(GetFishResponse.entityToDtoMapper()).apply(entity.get()))
                     .build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
