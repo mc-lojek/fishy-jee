@@ -4,42 +4,50 @@ import pl.mclojek.fishy.common.datastore.DataStore;
 import pl.mclojek.fishy.entity.Fish;
 
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
-@Dependent
+@RequestScoped
 public class FishRepository implements Repository<Fish, Long> {
 
-    private final DataStore store;
+    private EntityManager em;
 
-    @Inject
-    public FishRepository(DataStore store) {
-        this.store = store;
+    @PersistenceContext
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
 
     @Override
     public Optional<Fish> find(Long id) {
-        return store.findFish(id);
+        return Optional.ofNullable(em.find(Fish.class, id));
     }
 
     @Override
     public List<Fish> findAll() {
-        return store.findAllFishes();
+        return em.createQuery("select f from Fish f", Fish.class).getResultList();
     }
 
     @Override
     public void create(Fish entity) {
-        store.createFish(entity);
+        em.persist(entity);
     }
 
     @Override
     public void delete(Fish entity) {
-        store.removeFish(entity.getId());
+        em.remove(em.find(Fish.class, entity.getId()));
     }
 
     @Override
     public void update(Fish entity) {
-        store.updateFish(entity);
+        em.merge(entity);
+    }
+
+    @Override
+    public void detach(Fish entity) {
+        em.detach(entity);
     }
 }

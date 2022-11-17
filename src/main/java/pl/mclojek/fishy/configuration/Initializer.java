@@ -12,6 +12,7 @@ import pl.mclojek.fishy.service.UserService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
+import javax.enterprise.context.control.RequestContextController;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import java.io.InputStream;
@@ -24,12 +25,14 @@ public class Initializer {
     private final UserService userService;
     private final LakeService lakeService;
     private final FishService fishService;
+    private final RequestContextController requestContextController;
 
     @Inject
-    public Initializer(UserService userService, LakeService lakeService, FishService fishService) {
+    public Initializer(UserService userService, LakeService lakeService, FishService fishService, RequestContextController rcc) {
         this.userService = userService;
         this.lakeService = lakeService;
         this.fishService = fishService;
+        this.requestContextController = rcc;
     }
 
     public void contextInitialized(@Observes @Initialized(ApplicationScoped.class) Object init) {
@@ -37,6 +40,9 @@ public class Initializer {
     }
 
     private synchronized void init() {
+
+        requestContextController.activate();
+
         User u1 = User.builder()
                 .id(1)
                 .username("CrazyAngler")
@@ -125,6 +131,8 @@ public class Initializer {
         fishService.create(f1);
         fishService.create(f2);
 
+
+        requestContextController.deactivate();
     }
 
     @SneakyThrows
