@@ -3,9 +3,7 @@ package pl.mclojek.fishy.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,6 +20,7 @@ import java.util.List;
 public class User implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
     private String email;

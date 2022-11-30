@@ -7,10 +7,7 @@ import pl.mclojek.fishy.entity.Lake;
 import pl.mclojek.fishy.entity.User;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Log
@@ -68,7 +65,7 @@ public class DataStore {
     public synchronized Optional<Lake> findLakeWithFishes(Long id) {
         List<Fish> lakeFishes = findFishesForLake(id);
         Optional<Lake> lake = lakes.stream().filter(l -> l.getId() == id).findFirst().map(CloningUtility::clone);
-        lake.ifPresent(l -> l.setFishList(lakeFishes));
+        lake.ifPresent(l -> l.setFishList((ArrayList<Fish>) lakeFishes));
         return lake;
     }
 

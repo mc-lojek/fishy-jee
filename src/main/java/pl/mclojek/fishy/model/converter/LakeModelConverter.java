@@ -23,18 +23,15 @@ public class LakeModelConverter implements Converter<LakeModel> {
 
     @Override
     public LakeModel getAsObject(FacesContext context, UIComponent component, String value) {
-        System.out.println(value);
         if (value == null || value.isBlank()) {
             return null;
         }
         Optional<Lake> lake = service.find(Long.parseLong(value));
-        System.out.println(lake);
         return lake.isEmpty() ? null : LakeModel.entityToModelMapper().apply(lake.get());
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, LakeModel value) {
-        System.out.println(value);
         return value == null ? "" : Long.toString(value.getId());
     }
 

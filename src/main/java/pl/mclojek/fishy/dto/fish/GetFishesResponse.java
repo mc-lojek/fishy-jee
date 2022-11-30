@@ -1,6 +1,7 @@
 package pl.mclojek.fishy.dto.fish;
 
 import lombok.*;
+import pl.mclojek.fishy.entity.Lake;
 import pl.mclojek.fishy.enums.FishSpecies;
 
 import java.time.format.DateTimeFormatter;
@@ -30,6 +31,7 @@ public class GetFishesResponse {
         private String catchDate;
         private int length;
         private float weight;
+        private Lake lake;
     }
 
     @Singular
@@ -45,6 +47,7 @@ public class GetFishesResponse {
                             .catchDate(fish.getCatchDate().format(DateTimeFormatter.ISO_DATE_TIME))
                             .length(fish.getLength())
                             .weight(fish.getWeight())
+                            .lake(fish.getLake())
                             .build()
                     ).forEach(response::fish);
             return response.build();

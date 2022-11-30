@@ -44,7 +44,7 @@ public class Initializer {
         requestContextController.activate();
 
         User u1 = User.builder()
-                .id(1)
+                //.id(1)
                 .username("CrazyAngler")
                 .email("crazy@angler.com")
                 .password(Sha256Utility.hash("fishing123"))
@@ -54,7 +54,7 @@ public class Initializer {
                 .build();
 
         User u2 = User.builder()
-                .id(2)
+                //.id(2)
                 .username("Casual")
                 .email("casual1234@fish.pl")
                 .password(Sha256Utility.hash("password"))
@@ -64,7 +64,7 @@ public class Initializer {
                 .build();
 
         User u3 = User.builder()
-                .id(4)
+                //.id(4)
                 .username("randomName")
                 .email("random@gmail.com")
                 .password(Sha256Utility.hash("randomPassword"))
@@ -74,7 +74,7 @@ public class Initializer {
                 .build();
 
         User admin = User.builder()
-                .id(3)
+                //.id(3)
                 .username("admin")
                 .email("admin@admin.com")
                 .password(Sha256Utility.hash("admin"))
@@ -90,7 +90,7 @@ public class Initializer {
         userService.create(admin);
 
         Lake lake1 = Lake.builder()
-                .id(1)
+                //.id(1)
                 .name("Jezioro Miłoszewskie")
                 .area(26.4f)
                 .isPublic(false)
@@ -99,7 +99,7 @@ public class Initializer {
                 .build();
 
         Lake lake2 = Lake.builder()
-                .id(2)
+                //.id(2)
                 .name("Jezioro Jeleń")
                 .area(106.33f)
                 .isPublic(true)
@@ -111,16 +111,16 @@ public class Initializer {
         lakeService.create(lake2);
 
         Fish f1 = Fish.builder()
-                .id(1)
+                //.id(1)
                 .species(FishSpecies.COMMON_CARP)
                 .catchDate(LocalDateTime.now())
                 .length(123)
                 .weight(12.3f)
-                .lake(lake1)
+                .lake(lakeService.find(5L).orElseThrow())
                 .build();
 
         Fish f2 = Fish.builder()
-                .id(2)
+                //.id(2)
                 .species(FishSpecies.CATFISH)
                 .catchDate(LocalDateTime.now())
                 .length(1234)

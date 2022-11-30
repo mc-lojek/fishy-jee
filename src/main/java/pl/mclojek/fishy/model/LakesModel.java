@@ -24,17 +24,8 @@ public class LakesModel implements Serializable {
     @ToString
     @EqualsAndHashCode
     public static class Lake {
-
-        /**
-         * Unique id identifying character.
-         */
         private Long id;
-
-        /**
-         * Name of the character.
-         */
         private String name;
-
     }
 
     @Singular

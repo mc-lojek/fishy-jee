@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequestScoped
-public class LakeRepository implements Repository<Lake, Long>{
+public class LakeRepository implements Repository<Lake, Long> {
 
     private EntityManager em;
 
@@ -23,7 +23,8 @@ public class LakeRepository implements Repository<Lake, Long>{
 
     @Override
     public Optional<Lake> find(Long id) {
-        return Optional.ofNullable(em.find(Lake.class, id));
+        Optional<Lake> lake = Optional.ofNullable(em.find(Lake.class, id));
+        return lake;
     }
 
     @Override
@@ -38,7 +39,8 @@ public class LakeRepository implements Repository<Lake, Long>{
 
     @Override
     public void delete(Lake entity) {
-        em.remove(em.find(Lake.class, entity.getName()));
+        Lake lake = em.find(Lake.class, entity.getId());
+        em.remove(lake);
     }
 
     @Override

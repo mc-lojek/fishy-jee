@@ -60,7 +60,6 @@ public class FishCreate implements Serializable {
     }
 
     public String saveAction() {
-        System.out.println(fish.getLake().getId());
         service.create(FishCreateModel.modelToEntityMapper(
                 lakeId -> lakeService.find(lakeId).orElseThrow()).apply(fish));
         return "/lake/lake_list.xhtml?faces-redirect=true";

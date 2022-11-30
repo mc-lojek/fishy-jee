@@ -50,7 +50,6 @@ public class LakeView implements Serializable {
     }
 
     public String deleteAction(FishModel fish, Long lakeId) {
-        System.out.println("DELETUJE FISZA");
         fishService.delete(fish.getId());
         return "lake_view?faces-redirect=true&includeViewParams=true";
     }
